@@ -48,7 +48,19 @@ void print_list(list *h, char *title) {
 }
 
 int main() {
-    // insert code here...
-    printf("Hello, World!\n");
+    list list_of_atoms;
+    list *head;
+    element atom;
+    printf("Enter atom name: \n");
+    scanf("%s", &atom.name);
+    
+    head = create_list(atom);
+    
+    print_list(head, "List of atoms");
+    
+    
+    
+    
+     
     return 0;
 }

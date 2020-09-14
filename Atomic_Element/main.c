@@ -40,9 +40,9 @@ list *array_to_list(element d[], int size) {
 }
 
 void print_list(list *h, char *title) {
-    printf("%s\n", title);
+    printf("%s\n ----------------------", title);
     while (!is_empty(h)) {
-        printf("%s :", h -> data.name);
+        printf("%s\t %s\t %lg\n", h -> data.name, h -> data.symb, h -> data.weight);
         h = h -> next;
     }
 }
@@ -51,10 +51,19 @@ int main() {
     list list_of_atoms;
     list *head;
     element atom;
-    printf("Enter atom name: \n");
-    scanf("%s", &atom.name);
+    int i;
+    
+    printf("Enter atom data, separated by tab: \t name\t simbol\t  weight\n");
+    scanf("%s\t %s\t %lg", &atom.name, &atom.symb, &atom.weight);
     
     head = create_list(atom);
+    
+    for (i = 1; i <= 2; i++) {
+        printf("Enter atom data, separated by tab: \t name\t simbol\t  weight\n");
+        scanf("%s\t %s\t %lg", &atom.name, &atom.symb, &atom.weight);
+     
+        head = add_to_front(atom, head);
+    }
     
     print_list(head, "List of atoms");
     

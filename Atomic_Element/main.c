@@ -2,17 +2,19 @@
 //  main.c
 //  Atomic_Element
 //
-//  Created by slava bily on 13.09.2020.
+//  Created by Vyacheslav Bily on 13.09.2020.
 //
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 
+// MARK: element and list structures declaration
 typedef struct element { char name[16]; char symb[8]; double weight; } element;
 
 typedef struct list { element data; struct list *next;} list;
 
+// MARK: fuctions for operations with List
 int is_empty(const list *l) {
     return (l == NULL);
 }
@@ -33,29 +35,32 @@ list *add_to_front(element d, list *h) {
 void print_list(list *h, char *title) {
     printf("\n%s\n ----------------------\n name\t simbol\t weight\n", title);
     while (!is_empty(h)) {
-        printf("%s\t %s\t %lg\n", h -> data.name, h -> data.symb, h -> data.weight);
+        printf("%s    %s   %lg\n", h -> data.name, h -> data.symb, h -> data.weight);
         h = h -> next;
     }
 }
 
+// MARK: Main program routing
 int main() {
-    list list_of_atoms;
+    // declaration of variables
     list *head;
     element atom;
     int i;
     
+    // input of data and list creation
     printf("Enter 1st atom data, separated by tab: \t name\t simbol\t  weight\n");
-    scanf("%s\t %s\t %lg", &atom.name, &atom.symb, &atom.weight);
+    scanf("%s %s %lg", &atom.name, &atom.symb, &atom.weight);
     
     head = create_list(atom);
     
     for (i = 2; i <= 10; i++) {
         printf("Enter data of atom number %d:\n", i);
-        scanf("%s\t %s\t %lg", &atom.name, &atom.symb, &atom.weight);
+        scanf("%s    %s    %lg", &atom.name, &atom.symb, &atom.weight);
      
         head = add_to_front(atom, head);
     }
     
+    // printing of atoms table
     print_list(head, "List of atoms");
    
     return 0;
